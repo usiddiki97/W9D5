@@ -33,12 +33,25 @@ function debounce(func, wait = 20, immediate = true) {
   };
 }
 
-const images = document.querySelectorAll(".slide")
+const sliderImages = document.querySelectorAll('.slide');
 
-function slideScroll (event) {
-
+function checkSlide(e) {
+  // loop over our images and see when we want each image to show
+  sliderImages.forEach(sliderImage => {
+    // half way through the image
+    const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+    // bottom of the image
+    const imageBottom = sliderImage.offsetTop + sliderImage.height;
+    const isHalfShown = slideInAt > sliderImage.offsetTop;
+    // see if we have scrolled past yet
+    const isNotScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isNotScrolledPast) {
+      sliderImage.classList.add('active');
+    } else {
+      sliderImage.classList.remove('active');
+    }
+  });
 }
 
-window.addEventListener("scroll", debounce(function(){
-  console.log("heyo!");
-}));
+// Use debounce to delay your scroll function and improve efficiency!
+window.addEventListener('scroll', debounce(checkSlide));

@@ -1,4 +1,4 @@
-import {htmlGenerator} from './warmup.js'
+import { htmlGenerator } from "./warmup";
 
 class Clock {
     constructor() {
@@ -11,8 +11,7 @@ class Clock {
         this.seconds = currentTime.getSeconds();
 
         // 3. Call printTime.
-        //this.printTime();
-        htmlGenerator(this.printTime(), clockElement);
+        this.printTime();
 
         // 4. Schedule the tick at 1 second intervals.
         setInterval(this._tick.bind(this), 1000);
@@ -21,10 +20,8 @@ class Clock {
     printTime() {
         // Format the time in HH:MM:SS
         const timeString = [this.hours, this.minutes, this.seconds].join(":");
-
-        // Use console.log to print it.
-        //console.log(timeString);
-        return timeString;
+    
+        htmlGenerator(timeString, clockElement);
     }
 
     _tick() {
@@ -32,7 +29,7 @@ class Clock {
         this._incrementSeconds();
 
         // 2. Call printTime.
-        htmlGenerator(this.printTime(), clockElement);
+        this.printTime();
     }
 
     _incrementSeconds() {
@@ -56,7 +53,6 @@ class Clock {
         this.hours = (this.hours + 1) % 24;
     }
 }
-const clockElement = document.getElementById('clock');
+
+const clockElement = document.getElementById("clock");
 const clock = new Clock();
-
-

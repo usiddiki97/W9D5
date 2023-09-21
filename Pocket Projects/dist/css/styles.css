@@ -52,23 +52,20 @@ h1 {
   transform: translateX(0%) scale(1);
 }
 
+.drop-down-dog-nav {
+  width: 200px;
+  margin: auto;
+  background-color: #F0F2EF;
+}
+
 .dog-link {
   display: none;
 }
 
 .dog-link.open {
   display: block;
-  margin: 10px 10px 10px 10px;
 }
 
- .drop-down-dog-nav {
-    width: 200px;
-    height: auto;
-    border: .5px solid #F0F2EF;
-    margin: 0 auto 0px;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: #F0F2EF;
-    color: #767B91;
+.dog-link > a {
+  color: black;
 }
-]
